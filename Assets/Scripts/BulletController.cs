@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileController : MonoBehaviour {
+public class BulletController : MonoBehaviour {
 
 	// La velocità del proiettile
 	public float speed = 30f;
@@ -14,8 +14,12 @@ public class ProjectileController : MonoBehaviour {
 	}
 
 	// Quando il renderer dell'oggetto esce dalla vista della
-	// Camera, l'oggetto viene distrutto
+	// Camera, l'oggetto viene reso invisibile
 	void OnBecameInvisible() {
-		Destroy (gameObject);
+		gameObject.SetActive (false);
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		Debug.Log ("Hit: " + collision.gameObject);
 	}
 }
